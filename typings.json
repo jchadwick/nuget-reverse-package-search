@@ -1,0 +1,6 @@
+{
+  "name": "jchadwick.nuget-reverse-package-search",
+  "dependencies": {
+    "request": "registry:npm/request#2.69.0+20160428223725"
+  }
+}
