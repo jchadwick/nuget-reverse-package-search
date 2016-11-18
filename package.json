@@ -12,7 +12,8 @@
         "Productivity"
     ],
     "activationEvents": [
-        "onCommand:extension.nugetReversePackageSearch"
+        "onCommand:extension.nugetReversePackageSearch",
+        "onLanguage:csharp"
     ],
     "main": "./out/src/extension",
     "contributes": {

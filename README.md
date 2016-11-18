@@ -1,6 +1,6 @@
-# jchadwick.nuget-reverse-package-search README
+# Visual Studio Code Extension: NuGet Reverse Package Search
 
-This is the README for your extension "jchadwick.nuget-reverse-package-search". After writing up a brief description, we recommend including the following sections.
+Adds reverse .NET package lookup support like the "Add Package" context menu  item in full Visual Studio
 
 ## Features
 
