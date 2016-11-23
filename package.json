@@ -2,7 +2,7 @@
   "name": "nuget-reverse-package-search",
   "displayName": "NuGet Reverse Package Search (\"Add Package\" support)",
   "description": "Adds reverse .NET package lookup support like the \"Add Package\" context menu  item in full Visual Studio",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "jesschadwick",
   "repository": "https://github.com/jchadwick/nuget-reverse-package-search",
   "engines": {
