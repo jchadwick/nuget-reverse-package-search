@@ -23,6 +23,8 @@ artifacts:
 test_script:
   - npm run test -- --reporter mocha-appveyor-reporter
 
+skip_tags: true
+
 deploy:
   provider: GitHub
   release: nuget-reverse-package-search-$(appveyor_build_version).vsix
@@ -33,6 +35,6 @@ deploy:
   prerelease: false
   on:
     branch: release 
-
+    
 after_deploy:
   - npm run publish -- -p %personal_access_token% 
