@@ -23,8 +23,9 @@
         }]
     },
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
+        "build": "tsc -p ./",
+        "vscode:prepublish": "npm run build",
+        "start": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "mocha -u tdd ./out/test"
     },
