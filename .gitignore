@@ -1,5 +1,4 @@
 .vscode
 out
 node_modules
-typings
 *.vsix

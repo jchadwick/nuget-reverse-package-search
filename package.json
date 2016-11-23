@@ -1,42 +1,48 @@
 {
-    "name": "nuget-reverse-package-search",
-    "displayName": "NuGet Reverse Package Search (\"Add Package\" support)",
-    "description": "Adds reverse .NET package lookup support like the \"Add Package\" context menu  item in full Visual Studio",
-    "version": "0.0.1",
-    "publisher": "jesschadwick",
-    "repository": "https://github.com/jchadwick/nuget-reverse-package-search",
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "categories": [
-        "Languages"
-    ],
-    "activationEvents": [
-        "onCommand:extension.nugetReversePackageSearch",
-        "onLanguage:csharp"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.nugetReversePackageSearch",
-            "title": "NuGet: Reverse Package Search"
-        }]
-    },
-    "scripts": {
-        "build": "tsc -p ./",
-        "vscode:prepublish": "npm run build",
-        "start": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "mocha -u tdd ./out/test"
-    },
-    "dependencies": {
-        "request": "^2.78.0"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+  "name": "nuget-reverse-package-search",
+  "displayName": "NuGet Reverse Package Search (\"Add Package\" support)",
+  "description": "Adds reverse .NET package lookup support like the \"Add Package\" context menu  item in full Visual Studio",
+  "version": "0.0.1",
+  "publisher": "jesschadwick",
+  "repository": "https://github.com/jchadwick/nuget-reverse-package-search",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Languages"
+  ],
+  "activationEvents": [
+    "onCommand:extension.nugetReversePackageSearch",
+    "onLanguage:csharp"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.nugetReversePackageSearch",
+        "title": "NuGet: Reverse Package Search"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node ./node_modules/vsce/out/vsce package",
+    "vscode:prepublish": "tsc -p ./",
+    "start": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "mocha -u tdd ./out/test",
+    "publish": "node ./node_modules/vsce/out/vsce publish"
+  },
+  "dependencies": {
+    "request": "^2.78.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "@types/request": "0.0.34",
+    "mocha": "^2.3.3",
+    "mocha-appveyor-reporter": "^0.2.1",
+    "typescript": "^2.0.3",
+    "vsce": "^1.17.0",
+    "vscode": "^1.0.0"
+  }
 }
