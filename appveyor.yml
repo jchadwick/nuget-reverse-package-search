@@ -25,15 +25,14 @@ test_script:
 
 deploy:
   provider: GitHub
-  release: nuget-reverse-package-search.v$(appveyor_build_version)
+  release: nuget-reverse-package-search-$(appveyor_build_version).vsix
   auth_token:
     secure: 49tYkCfaLrdmtaZq3BsFNwIv476SZBwHh24WOWZn5C8S9HrlIdfeWWyRx9BFBZXN
   artifact: /.*\.vsix/
   draft: false
   prerelease: false
   on:
-    branch: master 
-    appveyor_repo_tag: true
+    branch: release 
 
 after_deploy:
   - npm run publish -- -p %personal_access_token% 

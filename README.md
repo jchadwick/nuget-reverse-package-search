@@ -9,7 +9,7 @@ Whenever you type some code that you think should work but OmniSharp tells you t
 To fix this, just highlight the text and run the `NuGet Reverse Package Search` command to search the package repository.
 Once the results are found, you can select the package to install from the drop-down and the extension will add the package to your project. 
 
-\!\[See it in action\]\(docs/images/demo.gif\)
+![See it in action](docs/images/demo.gif)
 
 
 ## Requirements
@@ -26,15 +26,3 @@ This extension does not currently expose any configurable settings.
 _No known issues_
 
 Found an issue?  Report it on the [Extension Issues](https://github.com/jchadwick/nuget-reverse-package-search/issues) page!
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 0.0.1
-
-Initial release.
-
-### 0.0.4
-
-No changes - just a build that happen when I automated deployment via AppVeyor.
