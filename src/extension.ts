@@ -1,10 +1,8 @@
 'use strict';
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import search from './search';
 import installPackage from './installPackage';
 import {Package, PackageQuickPickItem} from './model';
+import search from './search';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -16,21 +14,21 @@ export function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand(
-                        'extension.nugetReversePackageSearch', 
-                        executeReversePackageSearch
+                        'extension.nugetReversePackageSearch',
+                        executeReversePackageSearch,
                     );
 
     context.subscriptions.push(disposable);
 
     return {
-        installPackage: installPackage,
-        search: search
-    }
+        installPackage,
+        search,
+    };
 }
 
 function executeReversePackageSearch() {
 
-    let window = vscode.window, 
+    let window = vscode.window,
         editor = vscode.window.activeTextEditor,
         query = editor && editor.document.getText(editor.selection);
 
@@ -40,22 +38,22 @@ function executeReversePackageSearch() {
 
     window.setStatusBarMessage(
         `Performing reverse NuGet package search for "${query}"...`,
-        req
+        req,
     );
 }
 
 function onPackageSearchComplete(query: string, packages: Package[]) {
 
-    if(!packages.length) {
+    if (!packages.length) {
         vscode.window.showInformationMessage(`No packages found for "${query}"`);
         return;
     }
 
-    let quickPicks = packages.map(x => <PackageQuickPickItem>{ 
-        label: x.Name,
-        description: x.Version,
+    let quickPicks = packages.map(x => <PackageQuickPickItem> {
         Name: x.Name,
-        Version: x.Version
+        Version: x.Version,
+        description: x.Version,
+        label: x.Name,
     });
 
     vscode.window.showQuickPick(quickPicks)
@@ -67,7 +65,7 @@ function onPackageSearchError(err) {
     vscode.window.showErrorMessage(err);
 }
 
-
 // this method is called when your extension is deactivated
 export function deactivate() {
+    // Intentionally empty (for now)
 }
