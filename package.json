@@ -26,7 +26,8 @@
   },
   "scripts": {
     "build": "node ./node_modules/vsce/out/vsce package",
-    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run compile",
     "start": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "mocha -u tdd ./out/test",
@@ -41,6 +42,7 @@
     "@types/request": "0.0.34",
     "mocha": "^2.3.3",
     "mocha-appveyor-reporter": "^0.2.1",
+    "mockery": "^2.0.0",
     "typescript": "^2.0.3",
     "vsce": "^1.17.0",
     "vscode": "^1.0.0"
