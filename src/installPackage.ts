@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import { Uri, window, workspace } from 'vscode';
 import { Package } from './model';
 
-const packageReferenceClosingTag = "</PackageReference>";
+const packageReferenceTagName = "PackageReference";
 
 export default async function installPackage(pkg: Package) {
 
@@ -28,26 +28,25 @@ async function addReferenceToProjectFile(pkg: Package, projectFile: Uri) {
 
     let projectDocument = await workspace.openTextDocument(projectFile),
         projectText = projectDocument.getText(),
-        alreadyHasReference = (projectText.indexOf(pkg.Name) !== -1),
-        insertIndex = projectText.lastIndexOf(packageReferenceClosingTag);
+        alreadyHasReference = (projectText.indexOf(`"${pkg.Name}"`) !== -1),
+        lastPackageTagIndex = projectText.lastIndexOf(`<${packageReferenceTagName}`);
 
     if (alreadyHasReference) {
         return;
     }
 
-    if (!insertIndex) {
+    if (!lastPackageTagIndex) {
         return;
     }
 
-    let insertPosition = projectDocument.positionAt(insertIndex + packageReferenceClosingTag.length),
+    let insertIndex = projectText.indexOf('\>', lastPackageTagIndex) + '\>'.length,
+        insertPosition = projectDocument.positionAt(insertIndex),
         currentDocument = window.activeTextEditor.document,
         projectEditor = await window.showTextDocument(projectDocument);
 
     await projectEditor.edit(editor =>
     editor.insert(insertPosition, `
-    <PackageReference Include="${pkg.Name}">
-      <Version>${pkg.Version}</Version>
-    </PackageReference>`));
+    <PackageReference Include="${pkg.Name}" Version="${pkg.Version}" />`));
 
     await projectDocument.save();
 
